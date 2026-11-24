@@ -1,8 +1,9 @@
 import Link from "next/link"
 
-import type { FeedPost } from "@/lib/posts"
-import { formatRelativeTime } from "@/lib/format"
+import { PostActions } from "@/components/post/post-actions"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { formatRelativeTime } from "@/lib/format"
+import type { FeedPost } from "@/lib/posts"
 
 function getInitials(name: string) {
   const initials = name
@@ -16,7 +17,13 @@ function getInitials(name: string) {
   return initials || "?"
 }
 
-export function PostCard({ post }: { post: FeedPost }) {
+export function PostCard({
+  post,
+  isSignedIn,
+}: {
+  post: FeedPost
+  isSignedIn: boolean
+}) {
   const username = post.author.username ?? post.author.id
   const profileHref = `/${username}`
 
@@ -62,9 +69,29 @@ export function PostCard({ post }: { post: FeedPost }) {
           </time>
         </div>
 
+        {post.parent && (
+          <Link
+            href={`/post/${post.parent.id}`}
+            className="mt-1 block text-sm text-muted-foreground hover:underline"
+          >
+            Replying to @{post.parent.author.username ?? post.parent.author.id}
+          </Link>
+        )}
+
         <p className="mt-2 text-sm leading-relaxed break-words whitespace-pre-wrap">
           {post.content}
         </p>
+
+        <PostActions
+          postId={post.id}
+          isSignedIn={isSignedIn}
+          likeCount={post.likeCount}
+          replyCount={post.replyCount}
+          repostCount={post.repostCount}
+          likedByMe={post.likedByMe}
+          repostedByMe={post.repostedByMe}
+          bookmarkedByMe={post.bookmarkedByMe}
+        />
       </div>
     </article>
   )

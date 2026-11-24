@@ -23,10 +23,14 @@ export default async function Page({ searchParams }: HomePageProps) {
   const query = await searchParams
   const cursor = typeof query.cursor === "string" ? query.cursor : undefined
 
-  const [{ posts, nextCursor }, session] = await Promise.all([
-    getFeed({ cursor, limit: FEED_PAGE_SIZE }),
-    getSession(),
-  ])
+  const session = await getSession()
+  const viewerId = session?.user.id
+
+  const { posts, nextCursor } = await getFeed({
+    cursor,
+    limit: FEED_PAGE_SIZE,
+    viewerId,
+  })
 
   const isSignedIn = Boolean(session)
 

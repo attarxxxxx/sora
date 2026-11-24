@@ -4,6 +4,7 @@ import { notFound } from "next/navigation"
 import { ArrowLeft } from "reicon-react"
 
 import { PostList } from "@/components/post/post-list"
+import { FollowButton } from "@/components/profile/follow-button"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import {
@@ -27,18 +28,18 @@ type ProfilePageProps = {
 
 export default async function Page({ params }: ProfilePageProps) {
   const { username } = await params
-
-  const [profile, session] = await Promise.all([
-    getProfile(username),
-    getSession(),
-  ])
+  const session = await getSession()
+  const profile = await getProfile(username, session?.user.id)
 
   if (!profile) {
     notFound()
   }
 
-  const { user, posts } = profile
+  const { user, posts, postCount, followerCount, followingCount, isFollowing } =
+    profile
   const displayUsername = user.username ?? username
+  const isSelf = session?.user.id === user.id
+  const isSignedIn = Boolean(session)
 
   return (
     <main className="mx-auto w-full max-w-2xl flex-1 px-4 py-8">
@@ -59,23 +60,47 @@ export default async function Page({ params }: ProfilePageProps) {
             <CardDescription>{user.name}</CardDescription>
           </CardHeader>
           <CardContent className="flex flex-col gap-4">
-            <div className="flex items-center gap-4">
-              <Avatar size="lg">
-                <AvatarImage src={user.image ?? undefined} alt={user.name} />
-                <AvatarFallback>
-                  {user.name.slice(0, 2).toUpperCase()}
-                </AvatarFallback>
-              </Avatar>
-              <div className="flex flex-col gap-0.5">
-                <span className="font-medium">{user.name}</span>
-                <span className="text-sm text-muted-foreground">
-                  {user._count.posts}{" "}
-                  {user._count.posts === 1 ? "post" : "posts"}
-                </span>
+            <div className="flex items-center justify-between gap-4">
+              <div className="flex items-center gap-4">
+                <Avatar size="lg">
+                  <AvatarImage src={user.image ?? undefined} alt={user.name} />
+                  <AvatarFallback>
+                    {user.name.slice(0, 2).toUpperCase()}
+                  </AvatarFallback>
+                </Avatar>
+                <div className="flex flex-col gap-0.5">
+                  <span className="font-medium">{user.name}</span>
+                  <span className="text-sm text-muted-foreground">
+                    {postCount} {postCount === 1 ? "post" : "posts"}
+                  </span>
+                </div>
               </div>
+
+              {!isSelf && (
+                <FollowButton
+                  userId={user.id}
+                  isFollowing={isFollowing}
+                  isSignedIn={isSignedIn}
+                />
+              )}
             </div>
 
             {user.bio && <p className="text-sm leading-relaxed">{user.bio}</p>}
+
+            <div className="flex gap-4 text-sm text-muted-foreground">
+              <span>
+                <strong className="font-medium text-foreground">
+                  {followerCount}
+                </strong>{" "}
+                {followerCount === 1 ? "follower" : "followers"}
+              </span>
+              <span>
+                <strong className="font-medium text-foreground">
+                  {followingCount}
+                </strong>{" "}
+                following
+              </span>
+            </div>
 
             <p className="text-sm text-muted-foreground">
               Joined{" "}
@@ -88,11 +113,7 @@ export default async function Page({ params }: ProfilePageProps) {
         </Card>
 
         <section aria-label={`Posts by ${user.name}`}>
-          <PostList
-            posts={posts}
-            nextCursor={null}
-            isSignedIn={Boolean(session)}
-          />
+          <PostList posts={posts} nextCursor={null} isSignedIn={isSignedIn} />
         </section>
       </div>
     </main>

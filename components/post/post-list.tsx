@@ -50,7 +50,7 @@ export function PostList({
       {posts.map((post, index) => (
         <Fragment key={post.id}>
           {index > 0 && <Separator />}
-          <PostCard post={post} />
+          <PostCard post={post} isSignedIn={isSignedIn} />
         </Fragment>
       ))}
 
