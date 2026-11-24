@@ -16,6 +16,15 @@ export type PostParent = {
   author: PostAuthor
 }
 
+export type PostMediaItem = {
+  id: string
+  url: string
+  alt: string | null
+  width: number | null
+  height: number | null
+  position: number
+}
+
 export type FeedPost = {
   id: string
   content: string
@@ -23,6 +32,8 @@ export type FeedPost = {
   createdAt: Date
   author: PostAuthor
   parent: PostParent | null
+  images: PostMediaItem[]
+  isMine: boolean
   likeCount: number
   replyCount: number
   repostCount: number
@@ -38,6 +49,7 @@ type SelectedPost = {
   createdAt: Date
   author: PostAuthor
   parent: PostParent | null
+  images: PostMediaItem[]
   _count: {
     likes: number
     replies: number
@@ -71,6 +83,17 @@ function postSelect(viewerId?: string) {
         author: { select: authorSelect },
       },
     },
+    images: {
+      select: {
+        id: true,
+        url: true,
+        alt: true,
+        width: true,
+        height: true,
+        position: true,
+      },
+      orderBy: { position: "asc" as const },
+    },
     _count: {
       select: {
         likes: true,
@@ -96,7 +119,7 @@ function postSelect(viewerId?: string) {
   }
 }
 
-function mapPost(post: SelectedPost): FeedPost {
+function mapPost(post: SelectedPost, viewerId?: string): FeedPost {
   return {
     id: post.id,
     content: post.content,
@@ -104,6 +127,8 @@ function mapPost(post: SelectedPost): FeedPost {
     createdAt: post.createdAt,
     author: post.author,
     parent: post.parent,
+    images: post.images,
+    isMine: Boolean(viewerId) && post.author.id === viewerId,
     likeCount: post._count.likes,
     replyCount: post._count.replies,
     repostCount: post._count.reposts,
@@ -134,7 +159,7 @@ export async function getFeed({
   const visiblePosts = hasMore ? posts.slice(0, limit) : posts
 
   return {
-    posts: visiblePosts.map(mapPost),
+    posts: visiblePosts.map((post) => mapPost(post, viewerId)),
     nextCursor: hasMore
       ? (visiblePosts[visiblePosts.length - 1]?.id ?? null)
       : null,
@@ -147,7 +172,7 @@ export async function getPost(postId: string, viewerId?: string) {
     select: postSelect(viewerId),
   })
 
-  return post ? mapPost(post) : null
+  return post ? mapPost(post, viewerId) : null
 }
 
 export async function getReplies(postId: string, viewerId?: string) {
@@ -158,7 +183,7 @@ export async function getReplies(postId: string, viewerId?: string) {
     select: postSelect(viewerId),
   })
 
-  return replies.map(mapPost)
+  return replies.map((post) => mapPost(post, viewerId))
 }
 
 export async function getProfile(username: string, viewerId?: string) {
@@ -170,6 +195,7 @@ export async function getProfile(username: string, viewerId?: string) {
       username: true,
       image: true,
       bio: true,
+      coverImage: true,
       createdAt: true,
     },
   })
@@ -210,6 +236,6 @@ export async function getProfile(username: string, viewerId?: string) {
     followerCount,
     followingCount,
     isFollowing: Boolean(follow),
-    posts: posts.map(mapPost),
+    posts: posts.map((post) => mapPost(post, viewerId)),
   }
 }

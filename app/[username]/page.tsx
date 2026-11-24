@@ -1,7 +1,8 @@
 import type { Metadata } from "next"
 import Link from "next/link"
+import Image from "next/image"
 import { notFound } from "next/navigation"
-import { ArrowLeft } from "reicon-react"
+import { ArrowLeft, Settings } from "reicon-react"
 
 import { PostList } from "@/components/post/post-list"
 import { FollowButton } from "@/components/profile/follow-button"
@@ -54,6 +55,19 @@ export default async function Page({ params }: ProfilePageProps) {
           Back
         </Button>
 
+        {user.coverImage && (
+          <div className="relative aspect-[3/1] w-full overflow-hidden rounded-lg border">
+            <Image
+              src={user.coverImage}
+              alt={`Cover image for ${user.name}`}
+              fill
+              sizes="(max-width: 640px) 100vw, 672px"
+              className="object-cover"
+              priority
+            />
+          </div>
+        )}
+
         <Card size="sm">
           <CardHeader>
             <CardTitle>@{displayUsername}</CardTitle>
@@ -76,7 +90,16 @@ export default async function Page({ params }: ProfilePageProps) {
                 </div>
               </div>
 
-              {!isSelf && (
+              {isSelf ? (
+                <Button
+                  variant="outline"
+                  size="sm"
+                  render={<Link href="/settings/profile" />}
+                >
+                  <Settings data-icon="inline-start" />
+                  Edit profile
+                </Button>
+              ) : (
                 <FollowButton
                   userId={user.id}
                   isFollowing={isFollowing}

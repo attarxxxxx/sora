@@ -9,6 +9,7 @@ import {
   toggleLikeAction,
   toggleRepostAction,
 } from "@/app/actions/interactions"
+import { DeletePostButton } from "@/components/post/delete-post-button"
 import { Button } from "@/components/ui/button"
 import { toast } from "@/components/ui/toast"
 
@@ -32,10 +33,12 @@ const toggleActions = {
 export function PostActions({
   postId,
   isSignedIn,
+  isMine,
   ...state
 }: InteractionState & {
   postId: string
   isSignedIn: boolean
+  isMine: boolean
 }) {
   const [isPending, startTransition] = React.useTransition()
   const [optimistic, applyOptimistic] = React.useOptimistic(
@@ -160,6 +163,8 @@ export function PostActions({
           <Bookmark data-icon="inline-start" />
         </Button>
       )}
+
+      {isMine && <DeletePostButton postId={postId} />}
     </div>
   )
 }

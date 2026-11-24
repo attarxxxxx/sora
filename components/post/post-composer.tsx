@@ -4,6 +4,7 @@ import * as React from "react"
 import { Send } from "reicon-react"
 
 import { createPost } from "@/app/actions/post"
+import { PostMediaPicker } from "@/components/media/post-media-picker"
 import { Button } from "@/components/ui/button"
 import {
   Card,
@@ -28,6 +29,7 @@ export function PostComposer() {
   const [isPending, startTransition] = React.useTransition()
   const [value, setValue] = React.useState("")
   const [error, setError] = React.useState<string | null>(null)
+  const [generation, setGeneration] = React.useState(0)
   const formRef = React.useRef<HTMLFormElement>(null)
 
   function onSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -46,6 +48,7 @@ export function PostComposer() {
 
       setValue("")
       formRef.current?.reset()
+      setGeneration((current) => current + 1)
       toast.add({
         title: "Posted",
         description: result.message ?? "Your post is live.",
@@ -78,7 +81,6 @@ export function PostComposer() {
                 maxLength={MAX_POST_LENGTH}
                 aria-invalid={Boolean(error)}
                 autoFocus
-                required
               />
               <FieldDescription className="self-end">
                 {value.length}/{MAX_POST_LENGTH}
@@ -86,6 +88,8 @@ export function PostComposer() {
               <FieldError>{error}</FieldError>
             </Field>
           </FieldGroup>
+
+          <PostMediaPicker key={generation} disabled={isPending} />
 
           <div className="flex justify-end">
             <Button type="submit" size="sm" disabled={isPending}>

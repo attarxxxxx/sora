@@ -1,6 +1,7 @@
 import Link from "next/link"
 
 import { PostActions } from "@/components/post/post-actions"
+import { PostMedia } from "@/components/post/post-media"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { formatRelativeTime } from "@/lib/format"
 import type { FeedPost } from "@/lib/posts"
@@ -78,13 +79,18 @@ export function PostCard({
           </Link>
         )}
 
-        <p className="mt-2 text-sm leading-relaxed break-words whitespace-pre-wrap">
-          {post.content}
-        </p>
+        {post.content && (
+          <p className="mt-2 text-sm leading-relaxed break-words whitespace-pre-wrap">
+            {post.content}
+          </p>
+        )}
+
+        <PostMedia images={post.images} authorName={post.author.name} />
 
         <PostActions
           postId={post.id}
           isSignedIn={isSignedIn}
+          isMine={post.isMine}
           likeCount={post.likeCount}
           replyCount={post.replyCount}
           repostCount={post.repostCount}
