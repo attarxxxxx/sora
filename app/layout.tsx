@@ -1,15 +1,22 @@
-import { Geist, Geist_Mono, Inter } from "next/font/google"
+import type { Metadata } from "next"
+import localFont from "next/font/local"
 
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils"
 
-const inter = Inter({subsets:['latin'],variable:'--font-sans'})
-
-const fontMono = Geist_Mono({
-  subsets: ["latin"],
-  variable: "--font-mono",
+const intern = localFont({
+  src: "./fonts/intern.woff2",
+  variable: "--font-sans",
+  display: "swap",
 })
+
+export const metadata: Metadata = {
+  title: "Sora",
+  description:
+    "A minimalist social space for sharing thoughts, images, and conversations.",
+  applicationName: "Sora",
+}
 
 export default function RootLayout({
   children,
@@ -20,7 +27,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={cn("antialiased", fontMono.variable, "font-sans", inter.variable)}
+      className={cn("antialiased font-sans", intern.variable)}
     >
       <body>
         <ThemeProvider>{children}</ThemeProvider>
