@@ -2,7 +2,9 @@ import type { Metadata } from "next"
 import localFont from "next/font/local"
 
 import "./globals.css"
+import { SiteHeader } from "@/components/site-header"
 import { ThemeProvider } from "@/components/theme-provider"
+import { Toaster } from "@/components/ui/toast"
 import { cn } from "@/lib/utils"
 
 const intern = localFont({
@@ -29,8 +31,13 @@ export default function RootLayout({
       suppressHydrationWarning
       className={cn("antialiased font-sans", intern.variable)}
     >
-      <body>
-        <ThemeProvider>{children}</ThemeProvider>
+      <body className="flex min-h-svh flex-col">
+        <ThemeProvider>
+          <Toaster>
+            <SiteHeader />
+            {children}
+          </Toaster>
+        </ThemeProvider>
       </body>
     </html>
   )
