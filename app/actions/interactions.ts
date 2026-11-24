@@ -2,6 +2,7 @@
 
 import { revalidatePath } from "next/cache"
 
+import { createNotification, NotificationType } from "@/lib/notifications"
 import { POST_MAX_LENGTH } from "@/lib/posts"
 import { prisma } from "@/lib/prisma"
 import { requireUser } from "@/lib/session"
@@ -40,6 +41,13 @@ export async function toggleLikeAction(postId: string): Promise<ActionResult> {
     await prisma.like.create({
       data: { userId: session.user.id, postId },
     })
+
+    await createNotification({
+      recipientId: post.authorId,
+      actorId: session.user.id,
+      type: NotificationType.LIKE,
+      postId,
+    })
   }
 
   revalidateSocialPaths()
@@ -63,6 +71,13 @@ export async function toggleRepostAction(
   if (deleted.count === 0) {
     await prisma.repost.create({
       data: { userId: session.user.id, postId },
+    })
+
+    await createNotification({
+      recipientId: post.authorId,
+      actorId: session.user.id,
+      type: NotificationType.REPOST,
+      postId,
     })
   }
 
@@ -126,6 +141,13 @@ export async function createReplyAction(
     },
   })
 
+  await createNotification({
+    recipientId: parent.authorId,
+    actorId: session.user.id,
+    type: NotificationType.REPLY,
+    postId: parent.id,
+  })
+
   revalidateSocialPaths()
   return { ok: true }
 }
@@ -161,6 +183,12 @@ export async function toggleFollowAction(
         followerId: session.user.id,
         followingId: userId,
       },
+    })
+
+    await createNotification({
+      recipientId: userId,
+      actorId: session.user.id,
+      type: NotificationType.FOLLOW,
     })
   }
 

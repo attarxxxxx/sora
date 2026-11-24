@@ -15,16 +15,44 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import { getProfile } from "@/lib/posts"
+import { getProfile, getProfileMeta } from "@/lib/posts"
 import { getSession } from "@/lib/session"
-
-export const metadata: Metadata = {
-  title: "Profile",
-  description: "View a Sora profile and their posts.",
-}
 
 type ProfilePageProps = {
   params: Promise<{ username: string }>
+}
+
+export async function generateMetadata({
+  params,
+}: ProfilePageProps): Promise<Metadata> {
+  const { username } = await params
+  const profile = await getProfileMeta(username)
+
+  if (!profile) {
+    return { title: "Profile not found" }
+  }
+
+  const displayUsername = profile.username ?? username
+  const title = `${profile.name} (@${displayUsername})`
+  const description = profile.bio ?? `See posts from ${profile.name} on Sora.`
+
+  return {
+    title,
+    description,
+    alternates: { canonical: `/${displayUsername}` },
+    openGraph: {
+      type: "profile",
+      title,
+      description,
+      url: `/${displayUsername}`,
+      images: profile.image ? [{ url: profile.image }] : undefined,
+    },
+    twitter: {
+      card: "summary",
+      title,
+      description,
+    },
+  }
 }
 
 export default async function Page({ params }: ProfilePageProps) {

@@ -42,7 +42,7 @@ export type FeedPost = {
   bookmarkedByMe: boolean
 }
 
-type SelectedPost = {
+export type SelectedPost = {
   id: string
   content: string
   parentId: string | null
@@ -67,7 +67,7 @@ const authorSelect = {
   image: true,
 }
 
-function postSelect(viewerId?: string) {
+export function postSelect(viewerId?: string) {
   const viewer = viewerId ?? ""
 
   return {
@@ -119,7 +119,7 @@ function postSelect(viewerId?: string) {
   }
 }
 
-function mapPost(post: SelectedPost, viewerId?: string): FeedPost {
+export function mapPost(post: SelectedPost, viewerId?: string): FeedPost {
   return {
     id: post.id,
     content: post.content,
@@ -166,6 +166,27 @@ export async function getFeed({
   }
 }
 
+export async function getPostMeta(postId: string) {
+  return prisma.post.findUnique({
+    where: { id: postId },
+    select: {
+      content: true,
+      createdAt: true,
+      author: {
+        select: {
+          name: true,
+          username: true,
+        },
+      },
+      images: {
+        select: { url: true },
+        orderBy: { position: "asc" as const },
+        take: 1,
+      },
+    },
+  })
+}
+
 export async function getPost(postId: string, viewerId?: string) {
   const post = await prisma.post.findUnique({
     where: { id: postId },
@@ -184,6 +205,18 @@ export async function getReplies(postId: string, viewerId?: string) {
   })
 
   return replies.map((post) => mapPost(post, viewerId))
+}
+
+export async function getProfileMeta(username: string) {
+  return prisma.user.findUnique({
+    where: { username: username.toLowerCase() },
+    select: {
+      name: true,
+      username: true,
+      bio: true,
+      image: true,
+    },
+  })
 }
 
 export async function getProfile(username: string, viewerId?: string) {

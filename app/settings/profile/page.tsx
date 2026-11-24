@@ -11,6 +11,7 @@ import { requireUser } from "@/lib/session"
 export const metadata: Metadata = {
   title: "Edit profile",
   description: "Update your Sora profile.",
+  robots: { index: false, follow: false },
 }
 
 export default async function Page() {

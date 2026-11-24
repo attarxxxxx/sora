@@ -12,6 +12,7 @@ import {
 import { DeletePostButton } from "@/components/post/delete-post-button"
 import { Button } from "@/components/ui/button"
 import { toast } from "@/components/ui/toast"
+import { notifyNotificationsChanged } from "@/lib/notification-events"
 
 type ToggleKey = "likedByMe" | "repostedByMe" | "bookmarkedByMe"
 
@@ -78,6 +79,11 @@ export function PostActions({
           description: result.error ?? "Please try again.",
           type: "error",
         })
+        return
+      }
+
+      if (key !== "bookmarkedByMe") {
+        notifyNotificationsChanged()
       }
     })
   }

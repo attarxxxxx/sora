@@ -21,6 +21,7 @@ import {
 } from "@/components/ui/field"
 import { Textarea } from "@/components/ui/textarea"
 import { toast } from "@/components/ui/toast"
+import { notifyNotificationsChanged } from "@/lib/notification-events"
 
 const MAX_REPLY_LENGTH = 500
 
@@ -49,6 +50,7 @@ export function ReplyComposer({ parentId }: { parentId: string }) {
 
       setValue("")
       formRef.current?.reset()
+      notifyNotificationsChanged()
       toast.add({
         title: "Reply posted",
         description: "Your reply is now in the thread.",

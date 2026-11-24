@@ -14,16 +14,46 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import { getPost, getReplies } from "@/lib/posts"
+import { getPost, getPostMeta, getReplies } from "@/lib/posts"
 import { getSession } from "@/lib/session"
-
-export const metadata: Metadata = {
-  title: "Post",
-  description: "View a post and its replies on Sora.",
-}
 
 type PostPageProps = {
   params: Promise<{ id: string }>
+}
+
+export async function generateMetadata({
+  params,
+}: PostPageProps): Promise<Metadata> {
+  const { id } = await params
+  const post = await getPostMeta(id)
+
+  if (!post) {
+    return { title: "Post not found" }
+  }
+
+  const title = `Post by ${post.author.name}`
+  const description =
+    post.content.trim().slice(0, 160) ||
+    `View this post and its replies on Sora.`
+
+  return {
+    title,
+    description,
+    alternates: { canonical: `/post/${id}` },
+    openGraph: {
+      type: "article",
+      title,
+      description,
+      url: `/post/${id}`,
+      publishedTime: post.createdAt.toISOString(),
+      images: post.images[0] ? [{ url: post.images[0].url }] : undefined,
+    },
+    twitter: {
+      card: post.images[0] ? "summary_large_image" : "summary",
+      title,
+      description,
+    },
+  }
 }
 
 export default async function Page({ params }: PostPageProps) {

@@ -6,6 +6,7 @@ import Link from "next/link"
 import { toggleFollowAction } from "@/app/actions/interactions"
 import { Button } from "@/components/ui/button"
 import { toast } from "@/components/ui/toast"
+import { notifyNotificationsChanged } from "@/lib/notification-events"
 
 export function FollowButton({
   userId,
@@ -37,7 +38,10 @@ export function FollowButton({
           description: result.error ?? "Please try again.",
           type: "error",
         })
+        return
       }
+
+      notifyNotificationsChanged()
     })
   }
 
