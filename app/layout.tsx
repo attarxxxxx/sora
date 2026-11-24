@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import localFont from "next/font/local"
 
 import "./globals.css"
+import { AppShell } from "@/components/app-shell"
 import { SiteHeader } from "@/components/site-header"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from "@/components/ui/toast"
@@ -29,13 +30,13 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={cn("antialiased font-sans", intern.variable)}
+      className={cn("font-sans antialiased", intern.variable)}
     >
       <body className="flex min-h-svh flex-col">
         <ThemeProvider>
           <Toaster>
             <SiteHeader />
-            {children}
+            <AppShell>{children}</AppShell>
           </Toaster>
         </ThemeProvider>
       </body>
