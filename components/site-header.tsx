@@ -48,7 +48,7 @@ export function SiteHeader() {
                 session.user.name}
             </span>
             <Button variant="ghost" size="sm" onClick={signOut}>
-              <Logout data-icon="inline-start" />
+              <Logout data-icon="inline-start" strokeWidth={2} />
               Sign out
             </Button>
           </div>

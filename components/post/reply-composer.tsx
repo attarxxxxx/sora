@@ -92,7 +92,7 @@ export function ReplyComposer({ parentId }: { parentId: string }) {
           <div className="flex justify-end">
             <Button type="submit" size="sm" disabled={isPending}>
               {isPending ? "Replying..." : "Reply"}
-              <Send data-icon="inline-end" />
+              <Send data-icon="inline-end" strokeWidth={2} />
             </Button>
           </div>
         </form>

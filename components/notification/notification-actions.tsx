@@ -45,7 +45,7 @@ export function MarkAllNotificationsReadButton({
       disabled={!hasUnread || isPending}
       onClick={markAll}
     >
-      <Check data-icon="inline-start" />
+      <Check data-icon="inline-start" strokeWidth={2} />
       {isPending ? "Updating..." : "Mark all as read"}
     </Button>
   )
@@ -85,7 +85,7 @@ export function MarkNotificationReadButton({
       disabled={isPending}
       onClick={markRead}
     >
-      <Check />
+      <Check strokeWidth={2} />
     </Button>
   )
 }

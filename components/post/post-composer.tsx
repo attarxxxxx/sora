@@ -94,7 +94,7 @@ export function PostComposer() {
           <div className="flex justify-end">
             <Button type="submit" size="sm" disabled={isPending}>
               {isPending ? "Posting..." : "Post"}
-              <Send data-icon="inline-end" />
+              <Send data-icon="inline-end" strokeWidth={2} />
             </Button>
           </div>
         </form>

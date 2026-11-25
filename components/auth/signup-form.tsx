@@ -135,7 +135,7 @@ export function SignupForm() {
 
       <Button type="submit" size="lg" disabled={isPending || isSessionPending}>
         {isPending ? "Creating account..." : "Create account"}
-        <ArrowRight data-icon="inline-end" />
+        <ArrowRight data-icon="inline-end" strokeWidth={2} />
       </Button>
 
       <p className="text-center text-sm text-muted-foreground">

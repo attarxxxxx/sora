@@ -93,7 +93,7 @@ export function PostMediaPicker({ disabled }: { disabled?: boolean }) {
           disabled={disabled || isUploading || items.length >= MAX_POST_IMAGES}
           onClick={() => inputRef.current?.click()}
         >
-          <ImagePlus data-icon="inline-start" />
+          <ImagePlus data-icon="inline-start" strokeWidth={2} />
           {isUploading
             ? "Uploading..."
             : `Add images (${items.length}/${MAX_POST_IMAGES})`}
@@ -141,7 +141,7 @@ export function PostMediaPicker({ disabled }: { disabled?: boolean }) {
                 disabled={disabled || isUploading}
                 onClick={() => remove(item.publicId)}
               >
-                <X />
+                <X strokeWidth={2} />
               </Button>
             </div>
           ))}

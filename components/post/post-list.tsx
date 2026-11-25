@@ -29,7 +29,7 @@ export function PostList({
       <Empty className="border">
         <EmptyHeader>
           <EmptyMedia variant="icon">
-            <Home />
+            <Home strokeWidth={2} />
           </EmptyMedia>
           <EmptyTitle>No posts yet</EmptyTitle>
           <EmptyDescription>

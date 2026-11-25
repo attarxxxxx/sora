@@ -99,7 +99,7 @@ export function PostActions({
           disabled={isPending}
           onClick={() => toggle("likedByMe")}
         >
-          <Heart data-icon="inline-start" />
+          <Heart data-icon="inline-start" strokeWidth={2} />
           {optimistic.likeCount}
         </Button>
       ) : (
@@ -109,7 +109,7 @@ export function PostActions({
           aria-label="Like"
           render={<Link href="/login" />}
         >
-          <Heart data-icon="inline-start" />
+          <Heart data-icon="inline-start" strokeWidth={2} />
           {optimistic.likeCount}
         </Button>
       )}
@@ -120,7 +120,7 @@ export function PostActions({
         aria-label="Replies"
         render={<Link href={`/post/${postId}`} />}
       >
-        <Message data-icon="inline-start" />
+        <Message data-icon="inline-start" strokeWidth={2} />
         {optimistic.replyCount}
       </Button>
 
@@ -133,7 +133,7 @@ export function PostActions({
           disabled={isPending}
           onClick={() => toggle("repostedByMe")}
         >
-          <Repeat data-icon="inline-start" />
+          <Repeat data-icon="inline-start" strokeWidth={2} />
           {optimistic.repostCount}
         </Button>
       ) : (
@@ -143,7 +143,7 @@ export function PostActions({
           aria-label="Repost"
           render={<Link href="/login" />}
         >
-          <Repeat data-icon="inline-start" />
+          <Repeat data-icon="inline-start" strokeWidth={2} />
           {optimistic.repostCount}
         </Button>
       )}
@@ -157,7 +157,7 @@ export function PostActions({
           disabled={isPending}
           onClick={() => toggle("bookmarkedByMe")}
         >
-          <Bookmark data-icon="inline-start" />
+          <Bookmark data-icon="inline-start" strokeWidth={2} />
         </Button>
       ) : (
         <Button
@@ -166,7 +166,7 @@ export function PostActions({
           aria-label="Bookmark"
           render={<Link href="/login" />}
         >
-          <Bookmark data-icon="inline-start" />
+          <Bookmark data-icon="inline-start" strokeWidth={2} />
         </Button>
       )}
 

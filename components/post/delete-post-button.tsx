@@ -32,7 +32,7 @@ export function DeletePostButton({ postId }: { postId: string }) {
       disabled={isPending}
       onClick={remove}
     >
-      <Trash />
+      <Trash strokeWidth={2} />
     </Button>
   )
 }

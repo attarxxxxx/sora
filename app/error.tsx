@@ -30,7 +30,7 @@ export default function ErrorPage({
       <Empty className="border">
         <EmptyHeader>
           <EmptyMedia variant="icon">
-            <CloseCircle />
+            <CloseCircle strokeWidth={2} />
           </EmptyMedia>
           <EmptyTitle>Something went wrong</EmptyTitle>
           <EmptyDescription>
@@ -39,11 +39,11 @@ export default function ErrorPage({
         </EmptyHeader>
         <EmptyContent className="flex flex-wrap justify-center gap-2">
           <Button onClick={retry}>
-            <Refresh data-icon="inline-start" />
+            <Refresh data-icon="inline-start" strokeWidth={2} />
             Try again
           </Button>
           <Button variant="outline" render={<Link href="/" />}>
-            <ArrowLeft data-icon="inline-start" />
+            <ArrowLeft data-icon="inline-start" strokeWidth={2} />
             Back home
           </Button>
         </EmptyContent>

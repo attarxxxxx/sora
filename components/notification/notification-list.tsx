@@ -57,7 +57,7 @@ export function NotificationList({
       <Empty className="border">
         <EmptyHeader>
           <EmptyMedia variant="icon">
-            <Bell />
+            <Bell strokeWidth={2} />
           </EmptyMedia>
           <EmptyTitle>No notifications yet</EmptyTitle>
           <EmptyDescription>
@@ -143,8 +143,7 @@ export function NotificationList({
 
               <Icon
                 aria-hidden="true"
-                className="hidden size-4 shrink-0 text-muted-foreground sm:block"
-              />
+                className="hidden size-4 shrink-0 text-muted-foreground sm:block" strokeWidth={2} />
             </div>
           </Fragment>
         )

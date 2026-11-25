@@ -85,7 +85,7 @@ export default async function Page({ searchParams }: SearchPageProps) {
             </Field>
           </FieldGroup>
           <Button type="submit">
-            <Search data-icon="inline-start" />
+            <Search data-icon="inline-start" strokeWidth={2} />
             Search
           </Button>
         </form>
@@ -94,7 +94,7 @@ export default async function Page({ searchParams }: SearchPageProps) {
           <Empty className="border">
             <EmptyHeader>
               <EmptyMedia variant="icon">
-                <Search />
+                <Search strokeWidth={2} />
               </EmptyMedia>
               <EmptyTitle>What are you looking for?</EmptyTitle>
               <EmptyDescription>
@@ -106,7 +106,7 @@ export default async function Page({ searchParams }: SearchPageProps) {
           <Empty className="border">
             <EmptyHeader>
               <EmptyMedia variant="icon">
-                <Search />
+                <Search strokeWidth={2} />
               </EmptyMedia>
               <EmptyTitle>No results for “{query}”</EmptyTitle>
               <EmptyDescription>

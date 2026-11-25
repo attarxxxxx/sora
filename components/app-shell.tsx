@@ -28,45 +28,45 @@ export function AppShell({ children }: { children: ReactNode }) {
   }
 
   const desktopItems: NavItem[] = [
-    { label: "Home", href: "/", icon: <Home data-icon="inline-start" /> },
+    { label: "Home", href: "/", icon: <Home data-icon="inline-start" strokeWidth={2} /> },
     {
       label: "Search",
       href: "/search",
-      icon: <Search data-icon="inline-start" />,
+      icon: <Search data-icon="inline-start" strokeWidth={2} />,
     },
     {
       label: "Notifications",
       href: "/notifications",
-      icon: <Bell data-icon="inline-start" />,
+      icon: <Bell data-icon="inline-start" strokeWidth={2} />,
     },
     {
       label: "Profile",
       href: profileHref,
-      icon: <User data-icon="inline-start" />,
+      icon: <User data-icon="inline-start" strokeWidth={2} />,
     },
   ]
 
   const mobileItems: NavItem[] = [
-    { label: "Home", href: "/", icon: <Home data-icon="inline-start" /> },
+    { label: "Home", href: "/", icon: <Home data-icon="inline-start" strokeWidth={2} /> },
     {
       label: "Search",
       href: "/search",
-      icon: <Search data-icon="inline-start" />,
+      icon: <Search data-icon="inline-start" strokeWidth={2} />,
     },
     {
       label: "New post",
       href: composeHref,
-      icon: <PenSquare data-icon="inline-start" />,
+      icon: <PenSquare data-icon="inline-start" strokeWidth={2} />,
     },
     {
       label: "Notifications",
       href: "/notifications",
-      icon: <Bell data-icon="inline-start" />,
+      icon: <Bell data-icon="inline-start" strokeWidth={2} />,
     },
     {
       label: "Profile",
       href: profileHref,
-      icon: <User data-icon="inline-start" />,
+      icon: <User data-icon="inline-start" strokeWidth={2} />,
     },
   ]
 
@@ -107,7 +107,7 @@ export function AppShell({ children }: { children: ReactNode }) {
           </nav>
 
           <Button render={<Link href={composeHref} />}>
-            <PenSquare data-icon="inline-start" />
+            <PenSquare data-icon="inline-start" strokeWidth={2} />
             New post
           </Button>
         </aside>

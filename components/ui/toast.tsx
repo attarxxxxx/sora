@@ -133,7 +133,7 @@ function ToastClose({
       {...props}
     >
       {children ?? (
-        <X aria-hidden="true" />
+        <X aria-hidden="true" strokeWidth={2} />
       )}
     </ToastPrimitive.Close>
   )
@@ -144,31 +144,31 @@ function ToastIcon({ type }: { type: string | undefined }) {
 
   if (type === "success") {
     icon = (
-      <TickCircle aria-hidden="true" />
+      <TickCircle aria-hidden="true" strokeWidth={2} />
     )
   }
 
   if (type === "info") {
     icon = (
-      <Information aria-hidden="true" />
+      <Information aria-hidden="true" strokeWidth={2} />
     )
   }
 
   if (type === "warning") {
     icon = (
-      <Warning aria-hidden="true" />
+      <Warning aria-hidden="true" strokeWidth={2} />
     )
   }
 
   if (type === "error") {
     icon = (
-      <CloseCircle className="text-destructive" aria-hidden="true" />
+      <CloseCircle className="text-destructive" aria-hidden="true" strokeWidth={2} />
     )
   }
 
   if (type === "loading") {
     icon = (
-      <Loader className="animate-spin" aria-hidden="true" />
+      <Loader className="animate-spin" aria-hidden="true" strokeWidth={2} />
     )
   }
 

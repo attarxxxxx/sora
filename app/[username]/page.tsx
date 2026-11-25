@@ -79,7 +79,7 @@ export default async function Page({ params }: ProfilePageProps) {
           className="self-start"
           render={<Link href="/" />}
         >
-          <ArrowLeft data-icon="inline-start" />
+          <ArrowLeft data-icon="inline-start" strokeWidth={2} />
           Back
         </Button>
 
@@ -124,7 +124,7 @@ export default async function Page({ params }: ProfilePageProps) {
                   size="sm"
                   render={<Link href="/settings/profile" />}
                 >
-                  <Settings data-icon="inline-start" />
+                  <Settings data-icon="inline-start" strokeWidth={2} />
                   Edit profile
                 </Button>
               ) : (

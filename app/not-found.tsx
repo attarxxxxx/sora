@@ -22,7 +22,7 @@ export default function NotFound() {
         </EmptyHeader>
         <EmptyContent>
           <Button render={<Link href="/" />}>
-            <ArrowLeft data-icon="inline-start" />
+            <ArrowLeft data-icon="inline-start" strokeWidth={2} />
             Back home
           </Button>
         </EmptyContent>

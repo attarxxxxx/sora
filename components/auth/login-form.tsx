@@ -100,7 +100,7 @@ export function LoginForm() {
 
       <Button type="submit" size="lg" disabled={isPending || isSessionPending}>
         {isPending ? "Logging in..." : "Log in"}
-        <ArrowRight data-icon="inline-end" />
+        <ArrowRight data-icon="inline-end" strokeWidth={2} />
       </Button>
 
       <p className="text-center text-sm text-muted-foreground">

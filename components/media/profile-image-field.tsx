@@ -123,7 +123,7 @@ export function ProfileImageField({
           disabled={disabled || isUploading}
           onClick={() => inputRef.current?.click()}
         >
-          <Camera data-icon="inline-start" />
+          <Camera data-icon="inline-start" strokeWidth={2} />
           {isUploading ? "Uploading..." : previewUrl ? "Change" : "Upload"}
         </Button>
 
@@ -135,7 +135,7 @@ export function ProfileImageField({
             disabled={disabled || isUploading}
             onClick={remove}
           >
-            <X data-icon="inline-start" />
+            <X data-icon="inline-start" strokeWidth={2} />
             Remove
           </Button>
         )}
