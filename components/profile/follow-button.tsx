@@ -24,7 +24,7 @@ export function FollowButton({
   )
 
   if (!isSignedIn) {
-    return <Button render={<Link href="/login" />}>Follow</Button>
+    return <Button nativeButton={false} render={<Link href="/login" />}>Follow</Button>
   }
 
   function toggle() {

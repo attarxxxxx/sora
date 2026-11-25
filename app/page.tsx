@@ -55,8 +55,8 @@ export default async function Page({ searchParams }: HomePageProps) {
               </CardDescription>
             </CardHeader>
             <CardContent className="flex flex-wrap gap-2">
-              <Button render={<Link href="/signup" />}>Sign up</Button>
-              <Button variant="outline" render={<Link href="/login" />}>
+              <Button nativeButton={false} render={<Link href="/signup" />}>Sign up</Button>
+              <Button nativeButton={false} variant="outline" render={<Link href="/login" />}>
                 Log in
               </Button>
             </CardContent>

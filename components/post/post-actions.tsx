@@ -103,7 +103,7 @@ export function PostActions({
           {optimistic.likeCount}
         </Button>
       ) : (
-        <Button
+        <Button nativeButton={false}
           variant="ghost"
           size="sm"
           aria-label="Like"
@@ -114,7 +114,7 @@ export function PostActions({
         </Button>
       )}
 
-      <Button
+      <Button nativeButton={false}
         variant="ghost"
         size="sm"
         aria-label="Replies"
@@ -137,7 +137,7 @@ export function PostActions({
           {optimistic.repostCount}
         </Button>
       ) : (
-        <Button
+        <Button nativeButton={false}
           variant="ghost"
           size="sm"
           aria-label="Repost"
@@ -160,7 +160,7 @@ export function PostActions({
           <Bookmark data-icon="inline-start" strokeWidth={2} />
         </Button>
       ) : (
-        <Button
+        <Button nativeButton={false}
           variant="ghost"
           size="icon-sm"
           aria-label="Bookmark"

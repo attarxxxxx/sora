@@ -21,7 +21,7 @@ export default function NotFound() {
           </EmptyDescription>
         </EmptyHeader>
         <EmptyContent>
-          <Button render={<Link href="/" />}>
+          <Button nativeButton={false} render={<Link href="/" />}>
             <ArrowLeft data-icon="inline-start" strokeWidth={2} />
             Back home
           </Button>

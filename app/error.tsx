@@ -42,7 +42,7 @@ export default function ErrorPage({
             <Refresh data-icon="inline-start" strokeWidth={2} />
             Try again
           </Button>
-          <Button variant="outline" render={<Link href="/" />}>
+          <Button nativeButton={false} variant="outline" render={<Link href="/" />}>
             <ArrowLeft data-icon="inline-start" strokeWidth={2} />
             Back home
           </Button>

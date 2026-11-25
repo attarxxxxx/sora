@@ -38,7 +38,7 @@ export function PostList({
         </EmptyHeader>
         {!isSignedIn && (
           <EmptyContent>
-            <Button render={<Link href="/signup" />}>Create an account</Button>
+            <Button nativeButton={false} render={<Link href="/signup" />}>Create an account</Button>
           </EmptyContent>
         )}
       </Empty>

@@ -75,7 +75,7 @@ export default async function Page({ params }: PostPageProps) {
   return (
     <main className="mx-auto w-full max-w-2xl flex-1 px-4 py-8">
       <div className="flex flex-col gap-6">
-        <Button
+        <Button nativeButton={false}
           variant="ghost"
           size="sm"
           className="self-start"
@@ -100,8 +100,8 @@ export default async function Page({ params }: PostPageProps) {
               <CardDescription>Log in to reply to this post.</CardDescription>
             </CardHeader>
             <CardContent className="flex flex-wrap gap-2">
-              <Button render={<Link href="/signup" />}>Sign up</Button>
-              <Button variant="outline" render={<Link href="/login" />}>
+              <Button nativeButton={false} render={<Link href="/signup" />}>Sign up</Button>
+              <Button nativeButton={false} variant="outline" render={<Link href="/login" />}>
                 Log in
               </Button>
             </CardContent>

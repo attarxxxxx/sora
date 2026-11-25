@@ -38,7 +38,7 @@ export default async function Page() {
   return (
     <main className="mx-auto w-full max-w-2xl flex-1 px-4 py-8">
       <div className="flex flex-col gap-6">
-        <Button
+        <Button nativeButton={false}
           variant="ghost"
           size="sm"
           className="self-start"

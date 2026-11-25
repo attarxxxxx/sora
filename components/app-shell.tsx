@@ -92,7 +92,7 @@ export function AppShell({ children }: { children: ReactNode }) {
         <aside className="sticky top-14 hidden h-[calc(100svh-3.5rem)] w-56 shrink-0 flex-col gap-6 border-r px-3 py-6 md:flex">
           <nav className="flex flex-col gap-1" aria-label="Main navigation">
             {desktopItems.map((item) => (
-              <Button
+              <Button nativeButton={false}
                 key={item.label}
                 variant={isActive(item) ? "secondary" : "ghost"}
                 className="justify-start"
@@ -106,7 +106,7 @@ export function AppShell({ children }: { children: ReactNode }) {
             ))}
           </nav>
 
-          <Button render={<Link href={composeHref} />}>
+          <Button nativeButton={false} render={<Link href={composeHref} />}>
             <PenSquare data-icon="inline-start" strokeWidth={2} />
             New post
           </Button>
@@ -122,7 +122,7 @@ export function AppShell({ children }: { children: ReactNode }) {
         aria-label="Mobile navigation"
       >
         {mobileItems.map((item) => (
-          <Button
+          <Button nativeButton={false}
             key={item.label}
             variant={isActive(item) ? "secondary" : "ghost"}
             size="icon"
