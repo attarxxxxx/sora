@@ -1,17 +1,20 @@
 "use client"
 
 import Link from "next/link"
-import { useRouter } from "next/navigation"
+import { usePathname, useRouter } from "next/navigation"
 import { Logout } from "reicon-react"
 
 import { Button } from "@/components/ui/button"
 import { Skeleton } from "@/components/ui/skeleton"
 import { toast } from "@/components/ui/toast"
 import { authClient } from "@/lib/auth-client"
+import { cn } from "@/lib/utils"
 
 export function SiteHeader() {
   const router = useRouter()
+  const pathname = usePathname()
   const { data: session, isPending } = authClient.useSession()
+  const isAuthPage = pathname === "/login" || pathname === "/signup"
 
   async function signOut() {
     await authClient.signOut({
@@ -33,7 +36,12 @@ export function SiteHeader() {
 
   return (
     <header className="border-b">
-      <div className="mx-auto flex h-14 w-full max-w-2xl items-center justify-between gap-4 px-4">
+      <div
+        className={cn(
+          "mx-auto flex h-14 w-full items-center justify-between gap-4 px-4",
+          isAuthPage ? "max-w-2xl" : "max-w-7xl"
+        )}
+      >
         <Link href="/" className="text-base font-semibold tracking-tight">
           Sora
         </Link>
@@ -54,14 +62,19 @@ export function SiteHeader() {
           </div>
         ) : (
           <div className="flex items-center gap-2">
-            <Button nativeButton={false}
+            <Button
+              nativeButton={false}
               variant="ghost"
               size="sm"
               render={<Link href="/login" />}
             >
               Log in
             </Button>
-            <Button nativeButton={false} size="sm" render={<Link href="/signup" />}>
+            <Button
+              nativeButton={false}
+              size="sm"
+              render={<Link href="/signup" />}
+            >
               Sign up
             </Button>
           </div>

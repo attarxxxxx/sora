@@ -3,6 +3,7 @@ import localFont from "next/font/local"
 
 import "./globals.css"
 import { AppShell } from "@/components/app-shell"
+import { RightSidebar } from "@/components/right-sidebar"
 import { SiteHeader } from "@/components/site-header"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from "@/components/ui/toast"
@@ -67,7 +68,7 @@ export default function RootLayout({
         <ThemeProvider>
           <Toaster>
             <SiteHeader />
-            <AppShell>{children}</AppShell>
+            <AppShell rightSidebar={<RightSidebar />}>{children}</AppShell>
           </Toaster>
         </ThemeProvider>
       </body>

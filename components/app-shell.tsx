@@ -15,7 +15,13 @@ type NavItem = {
   icon: ReactNode
 }
 
-export function AppShell({ children }: { children: ReactNode }) {
+export function AppShell({
+  children,
+  rightSidebar,
+}: {
+  children: ReactNode
+  rightSidebar?: ReactNode
+}) {
   const pathname = usePathname()
   const { data: session } = authClient.useSession()
   const username = (session?.user as { username?: string } | undefined)
@@ -28,7 +34,11 @@ export function AppShell({ children }: { children: ReactNode }) {
   }
 
   const desktopItems: NavItem[] = [
-    { label: "Home", href: "/", icon: <Home data-icon="inline-start" strokeWidth={2} /> },
+    {
+      label: "Home",
+      href: "/",
+      icon: <Home data-icon="inline-start" strokeWidth={2} />,
+    },
     {
       label: "Search",
       href: "/search",
@@ -47,7 +57,11 @@ export function AppShell({ children }: { children: ReactNode }) {
   ]
 
   const mobileItems: NavItem[] = [
-    { label: "Home", href: "/", icon: <Home data-icon="inline-start" strokeWidth={2} /> },
+    {
+      label: "Home",
+      href: "/",
+      icon: <Home data-icon="inline-start" strokeWidth={2} />,
+    },
     {
       label: "Search",
       href: "/search",
@@ -88,11 +102,12 @@ export function AppShell({ children }: { children: ReactNode }) {
 
   return (
     <>
-      <div className="mx-auto flex w-full max-w-6xl flex-1">
-        <aside className="sticky top-14 hidden h-[calc(100svh-3.5rem)] w-56 shrink-0 flex-col gap-6 border-r px-3 py-6 md:flex">
+      <div className="mx-auto grid w-full max-w-7xl flex-1 grid-cols-1 md:grid-cols-[13rem_minmax(0,1fr)] lg:grid-cols-[13rem_minmax(0,1fr)_18rem]">
+        <aside className="sticky top-14 hidden h-[calc(100svh-3.5rem)] flex-col gap-6 border-r px-3 py-6 md:flex">
           <nav className="flex flex-col gap-1" aria-label="Main navigation">
             {desktopItems.map((item) => (
-              <Button nativeButton={false}
+              <Button
+                nativeButton={false}
                 key={item.label}
                 variant={isActive(item) ? "secondary" : "ghost"}
                 className="justify-start"
@@ -112,9 +127,18 @@ export function AppShell({ children }: { children: ReactNode }) {
           </Button>
         </aside>
 
-        <div id="main-content" className="min-w-0 flex-1 pb-20 md:pb-0">
+        <div id="main-content" className="min-w-0 pb-20 md:pb-0">
           {children}
         </div>
+
+        {rightSidebar && (
+          <aside
+            className="sticky top-14 hidden h-[calc(100svh-3.5rem)] border-l px-4 py-6 lg:block"
+            aria-label="Discover"
+          >
+            {rightSidebar}
+          </aside>
+        )}
       </div>
 
       <nav
@@ -122,7 +146,8 @@ export function AppShell({ children }: { children: ReactNode }) {
         aria-label="Mobile navigation"
       >
         {mobileItems.map((item) => (
-          <Button nativeButton={false}
+          <Button
+            nativeButton={false}
             key={item.label}
             variant={isActive(item) ? "secondary" : "ghost"}
             size="icon"
