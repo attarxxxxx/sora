@@ -10,6 +10,7 @@ import {
   toggleRepostAction,
 } from "@/app/actions/interactions"
 import { DeletePostButton } from "@/components/post/delete-post-button"
+import { SharePostButton } from "@/components/post/share-post-button"
 import { Button } from "@/components/ui/button"
 import { toast } from "@/components/ui/toast"
 import { notifyNotificationsChanged } from "@/lib/notification-events"
@@ -169,6 +170,8 @@ export function PostActions({
           <Bookmark data-icon="inline-start" strokeWidth={2} />
         </Button>
       )}
+
+      <SharePostButton postId={postId} />
 
       {isMine && <DeletePostButton postId={postId} />}
     </div>
