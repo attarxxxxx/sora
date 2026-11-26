@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import { Fragment } from "react"
-import { Search } from "reicon-react"
+import { MagnifierIcon } from "@solar-icons/react/linear/magnifier"
 
 import { PostCard } from "@/components/post/post-card"
 import { UserResultCard } from "@/components/search/user-result-card"
@@ -85,7 +85,7 @@ export default async function Page({ searchParams }: SearchPageProps) {
             </Field>
           </FieldGroup>
           <Button type="submit">
-            <Search data-icon="inline-start" strokeWidth={2} />
+            <MagnifierIcon data-icon="inline-start" />
             Search
           </Button>
         </form>
@@ -94,7 +94,7 @@ export default async function Page({ searchParams }: SearchPageProps) {
           <Empty className="border">
             <EmptyHeader>
               <EmptyMedia variant="icon">
-                <Search strokeWidth={2} />
+                <MagnifierIcon />
               </EmptyMedia>
               <EmptyTitle>What are you looking for?</EmptyTitle>
               <EmptyDescription>
@@ -106,7 +106,7 @@ export default async function Page({ searchParams }: SearchPageProps) {
           <Empty className="border">
             <EmptyHeader>
               <EmptyMedia variant="icon">
-                <Search strokeWidth={2} />
+                <MagnifierIcon />
               </EmptyMedia>
               <EmptyTitle>No results for “{query}”</EmptyTitle>
               <EmptyDescription>

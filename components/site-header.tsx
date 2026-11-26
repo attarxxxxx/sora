@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
-import { Logout } from "reicon-react"
+import { LogoutIcon } from "@solar-icons/react/linear/logout"
 
 import { Button } from "@/components/ui/button"
 import { Skeleton } from "@/components/ui/skeleton"
@@ -56,7 +56,7 @@ export function SiteHeader() {
                 session.user.name}
             </span>
             <Button variant="ghost" size="sm" onClick={signOut}>
-              <Logout data-icon="inline-start" strokeWidth={2} />
+              <LogoutIcon data-icon="inline-start" />
               Sign out
             </Button>
           </div>

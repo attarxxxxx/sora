@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { ArrowLeft } from "reicon-react"
+import { ArrowLeftIcon } from "@solar-icons/react/linear/arrow-left"
 
 import { MarkAllNotificationsReadButton } from "@/components/notification/notification-actions"
 import { NotificationList } from "@/components/notification/notification-list"
@@ -40,7 +40,7 @@ export default async function Page() {
           className="self-start"
           render={<Link href="/" />}
         >
-          <ArrowLeft data-icon="inline-start" strokeWidth={2} />
+          <ArrowLeftIcon data-icon="inline-start" />
           Back
         </Button>
 

@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { Send } from "reicon-react"
+import { SendSquareIcon } from "@solar-icons/react/linear/send-square"
 
 import { createReplyAction } from "@/app/actions/interactions"
 import { Button } from "@/components/ui/button"
@@ -92,7 +92,7 @@ export function ReplyComposer({ parentId }: { parentId: string }) {
           <div className="flex justify-end">
             <Button type="submit" size="sm" disabled={isPending}>
               {isPending ? "Replying..." : "Reply"}
-              <Send data-icon="inline-end" strokeWidth={2} />
+              <SendSquareIcon data-icon="inline-end" />
             </Button>
           </div>
         </form>

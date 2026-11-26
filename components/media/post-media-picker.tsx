@@ -1,7 +1,8 @@
 "use client"
 
 import * as React from "react"
-import { ImagePlus, X } from "reicon-react"
+import { GalleryAddIcon } from "@solar-icons/react/linear/gallery-add"
+import { CloseIcon } from "@solar-icons/react/linear/close"
 
 import { destroyAssetAction } from "@/app/actions/upload"
 import { Button } from "@/components/ui/button"
@@ -93,7 +94,7 @@ export function PostMediaPicker({ disabled }: { disabled?: boolean }) {
           disabled={disabled || isUploading || items.length >= MAX_POST_IMAGES}
           onClick={() => inputRef.current?.click()}
         >
-          <ImagePlus data-icon="inline-start" strokeWidth={2} />
+          <GalleryAddIcon data-icon="inline-start" />
           {isUploading
             ? "Uploading..."
             : `Add images (${items.length}/${MAX_POST_IMAGES})`}
@@ -141,7 +142,7 @@ export function PostMediaPicker({ disabled }: { disabled?: boolean }) {
                 disabled={disabled || isUploading}
                 onClick={() => remove(item.publicId)}
               >
-                <X strokeWidth={2} />
+                <CloseIcon />
               </Button>
             </div>
           ))}

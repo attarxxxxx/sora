@@ -2,7 +2,9 @@
 
 import * as React from "react"
 import Link from "next/link"
-import { ArrowLeft, CloseCircle, Refresh } from "reicon-react"
+import { ArrowLeftIcon } from "@solar-icons/react/linear/arrow-left"
+import { CloseCircleIcon } from "@solar-icons/react/linear/close-circle"
+import { RefreshIcon } from "@solar-icons/react/linear/refresh"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -30,7 +32,7 @@ export default function ErrorPage({
       <Empty className="border">
         <EmptyHeader>
           <EmptyMedia variant="icon">
-            <CloseCircle strokeWidth={2} />
+            <CloseCircleIcon />
           </EmptyMedia>
           <EmptyTitle>Something went wrong</EmptyTitle>
           <EmptyDescription>
@@ -39,11 +41,11 @@ export default function ErrorPage({
         </EmptyHeader>
         <EmptyContent className="flex flex-wrap justify-center gap-2">
           <Button onClick={retry}>
-            <Refresh data-icon="inline-start" strokeWidth={2} />
+            <RefreshIcon data-icon="inline-start" />
             Try again
           </Button>
           <Button nativeButton={false} variant="outline" render={<Link href="/" />}>
-            <ArrowLeft data-icon="inline-start" strokeWidth={2} />
+            <ArrowLeftIcon data-icon="inline-start" />
             Back home
           </Button>
         </EmptyContent>

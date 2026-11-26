@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { ArrowLeft } from "reicon-react"
+import { ArrowLeftIcon } from "@solar-icons/react/linear/arrow-left"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -22,7 +22,7 @@ export default function NotFound() {
         </EmptyHeader>
         <EmptyContent>
           <Button nativeButton={false} render={<Link href="/" />}>
-            <ArrowLeft data-icon="inline-start" strokeWidth={2} />
+            <ArrowLeftIcon data-icon="inline-start" />
             Back home
           </Button>
         </EmptyContent>

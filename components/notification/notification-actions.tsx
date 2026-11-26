@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import { useRouter } from "next/navigation"
-import { Check } from "reicon-react"
+import { CheckIcon } from "@solar-icons/react/linear/check"
 
 import {
   markAllNotificationsReadAction,
@@ -45,7 +45,7 @@ export function MarkAllNotificationsReadButton({
       disabled={!hasUnread || isPending}
       onClick={markAll}
     >
-      <Check data-icon="inline-start" strokeWidth={2} />
+      <CheckIcon data-icon="inline-start" />
       {isPending ? "Updating..." : "Mark all as read"}
     </Button>
   )
@@ -85,7 +85,7 @@ export function MarkNotificationReadButton({
       disabled={isPending}
       onClick={markRead}
     >
-      <Check strokeWidth={2} />
+      <CheckIcon />
     </Button>
   )
 }

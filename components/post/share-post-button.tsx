@@ -1,6 +1,6 @@
 "use client"
 
-import { Share } from "reicon-react"
+import { ShareIcon } from "@solar-icons/react/linear/share"
 
 import { Button } from "@/components/ui/button"
 import { toast } from "@/components/ui/toast"
@@ -58,7 +58,7 @@ export function SharePostButton({ postId }: { postId: string }) {
       aria-label="Share post"
       onClick={copyLink}
     >
-      <Share data-icon="inline-start" strokeWidth={2} />
+      <ShareIcon data-icon="inline-start" />
     </Button>
   )
 }

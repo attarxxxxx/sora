@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { Search } from "reicon-react"
+import { MagnifierIcon } from "@solar-icons/react/linear/magnifier"
 
 import { FollowButton } from "@/components/profile/follow-button"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
@@ -62,7 +62,7 @@ export async function RightSidebar() {
             aria-label="Search Sora"
           />
           <Button type="submit" size="icon-sm" aria-label="Search">
-            <Search strokeWidth={2} />
+            <MagnifierIcon />
           </Button>
         </div>
       </form>

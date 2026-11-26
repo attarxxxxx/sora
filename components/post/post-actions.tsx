@@ -2,7 +2,10 @@
 
 import * as React from "react"
 import Link from "next/link"
-import { Bookmark, Heart, Message, Repeat } from "reicon-react"
+import { BookmarkIcon } from "@solar-icons/react/linear/bookmark"
+import { HeartIcon } from "@solar-icons/react/linear/heart"
+import { ChatRoundIcon } from "@solar-icons/react/linear/chat-round"
+import { RepeatIcon } from "@solar-icons/react/linear/repeat"
 
 import {
   toggleBookmarkAction,
@@ -100,7 +103,7 @@ export function PostActions({
           disabled={isPending}
           onClick={() => toggle("likedByMe")}
         >
-          <Heart data-icon="inline-start" strokeWidth={2} />
+          <HeartIcon data-icon="inline-start" />
           {optimistic.likeCount}
         </Button>
       ) : (
@@ -110,7 +113,7 @@ export function PostActions({
           aria-label="Like"
           render={<Link href="/login" />}
         >
-          <Heart data-icon="inline-start" strokeWidth={2} />
+          <HeartIcon data-icon="inline-start" />
           {optimistic.likeCount}
         </Button>
       )}
@@ -121,7 +124,7 @@ export function PostActions({
         aria-label="Replies"
         render={<Link href={`/post/${postId}`} />}
       >
-        <Message data-icon="inline-start" strokeWidth={2} />
+        <ChatRoundIcon data-icon="inline-start" />
         {optimistic.replyCount}
       </Button>
 
@@ -134,7 +137,7 @@ export function PostActions({
           disabled={isPending}
           onClick={() => toggle("repostedByMe")}
         >
-          <Repeat data-icon="inline-start" strokeWidth={2} />
+          <RepeatIcon data-icon="inline-start" />
           {optimistic.repostCount}
         </Button>
       ) : (
@@ -144,7 +147,7 @@ export function PostActions({
           aria-label="Repost"
           render={<Link href="/login" />}
         >
-          <Repeat data-icon="inline-start" strokeWidth={2} />
+          <RepeatIcon data-icon="inline-start" />
           {optimistic.repostCount}
         </Button>
       )}
@@ -158,7 +161,7 @@ export function PostActions({
           disabled={isPending}
           onClick={() => toggle("bookmarkedByMe")}
         >
-          <Bookmark data-icon="inline-start" strokeWidth={2} />
+          <BookmarkIcon data-icon="inline-start" />
         </Button>
       ) : (
         <Button nativeButton={false}
@@ -167,7 +170,7 @@ export function PostActions({
           aria-label="Bookmark"
           render={<Link href="/login" />}
         >
-          <Bookmark data-icon="inline-start" strokeWidth={2} />
+          <BookmarkIcon data-icon="inline-start" />
         </Button>
       )}
 

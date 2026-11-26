@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { notFound } from "next/navigation"
-import { ArrowLeft } from "reicon-react"
+import { ArrowLeftIcon } from "@solar-icons/react/linear/arrow-left"
 
 import { ProfileForm } from "@/components/profile/profile-form"
 import { Button } from "@/components/ui/button"
@@ -44,7 +44,7 @@ export default async function Page() {
           className="self-start"
           render={<Link href={`/${username}`} />}
         >
-          <ArrowLeft data-icon="inline-start" strokeWidth={2} />
+          <ArrowLeftIcon data-icon="inline-start" />
           Back to profile
         </Button>
 

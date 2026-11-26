@@ -1,7 +1,8 @@
 "use client"
 
 import * as React from "react"
-import { Camera, X } from "reicon-react"
+import { CameraIcon } from "@solar-icons/react/linear/camera"
+import { CloseIcon } from "@solar-icons/react/linear/close"
 
 import { destroyAssetAction } from "@/app/actions/upload"
 import { Button } from "@/components/ui/button"
@@ -123,7 +124,7 @@ export function ProfileImageField({
           disabled={disabled || isUploading}
           onClick={() => inputRef.current?.click()}
         >
-          <Camera data-icon="inline-start" strokeWidth={2} />
+          <CameraIcon data-icon="inline-start" />
           {isUploading ? "Uploading..." : previewUrl ? "Change" : "Upload"}
         </Button>
 
@@ -135,7 +136,7 @@ export function ProfileImageField({
             disabled={disabled || isUploading}
             onClick={remove}
           >
-            <X data-icon="inline-start" strokeWidth={2} />
+            <CloseIcon data-icon="inline-start" />
             Remove
           </Button>
         )}

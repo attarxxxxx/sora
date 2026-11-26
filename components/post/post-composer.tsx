@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { Send } from "reicon-react"
+import { SendSquareIcon } from "@solar-icons/react/linear/send-square"
 
 import { createPost } from "@/app/actions/post"
 import { PostMediaPicker } from "@/components/media/post-media-picker"
@@ -94,7 +94,7 @@ export function PostComposer() {
           <div className="flex justify-end">
             <Button type="submit" size="sm" disabled={isPending}>
               {isPending ? "Posting..." : "Post"}
-              <Send data-icon="inline-end" strokeWidth={2} />
+              <SendSquareIcon data-icon="inline-end" />
             </Button>
           </div>
         </form>

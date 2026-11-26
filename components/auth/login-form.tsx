@@ -3,7 +3,7 @@
 import * as React from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
-import { ArrowRight } from "reicon-react"
+import { ArrowRightIcon } from "@solar-icons/react/linear/arrow-right"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -100,7 +100,7 @@ export function LoginForm() {
 
       <Button type="submit" size="lg" disabled={isPending || isSessionPending}>
         {isPending ? "Logging in..." : "Log in"}
-        <ArrowRight data-icon="inline-end" strokeWidth={2} />
+        <ArrowRightIcon data-icon="inline-end" />
       </Button>
 
       <p className="text-center text-sm text-muted-foreground">

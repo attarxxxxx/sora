@@ -3,7 +3,8 @@
 import * as React from "react"
 import { Menu as MenuPrimitive } from "@base-ui/react/menu"
 import { cn } from "cn"
-import { ChevronRight, Check } from "reicon-react"
+import { AltArrowRightIcon } from "@solar-icons/react/linear/alt-arrow-right"
+import { CheckIcon } from "@solar-icons/react/linear/check"
 
 function DropdownMenu({ ...props }: MenuPrimitive.Root.Props) {
   return <MenuPrimitive.Root data-slot="dropdown-menu" {...props} />
@@ -118,7 +119,7 @@ function DropdownMenuSubTrigger({
       {...props}
     >
       {children}
-      <ChevronRight className="ml-auto" strokeWidth={2} />
+      <AltArrowRightIcon className="ml-auto" />
     </MenuPrimitive.SubmenuTrigger>
   )
 }
@@ -169,7 +170,7 @@ function DropdownMenuCheckboxItem({
         data-slot="dropdown-menu-checkbox-item-indicator"
       >
         <MenuPrimitive.CheckboxItemIndicator>
-          <Check strokeWidth={2} />
+          <CheckIcon />
         </MenuPrimitive.CheckboxItemIndicator>
       </span>
       {children}
@@ -209,7 +210,7 @@ function DropdownMenuRadioItem({
         data-slot="dropdown-menu-radio-item-indicator"
       >
         <MenuPrimitive.RadioItemIndicator>
-          <Check strokeWidth={2} />
+          <CheckIcon />
         </MenuPrimitive.RadioItemIndicator>
       </span>
       {children}

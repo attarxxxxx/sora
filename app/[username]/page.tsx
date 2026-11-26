@@ -2,7 +2,8 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import Image from "next/image"
 import { notFound } from "next/navigation"
-import { ArrowLeft, Settings } from "reicon-react"
+import { ArrowLeftIcon } from "@solar-icons/react/linear/arrow-left"
+import { SettingsIcon } from "@solar-icons/react/linear/settings"
 
 import { PostList } from "@/components/post/post-list"
 import { FollowButton } from "@/components/profile/follow-button"
@@ -79,7 +80,7 @@ export default async function Page({ params }: ProfilePageProps) {
           className="self-start"
           render={<Link href="/" />}
         >
-          <ArrowLeft data-icon="inline-start" strokeWidth={2} />
+          <ArrowLeftIcon data-icon="inline-start" />
           Back
         </Button>
 
@@ -124,7 +125,7 @@ export default async function Page({ params }: ProfilePageProps) {
                   size="sm"
                   render={<Link href="/settings/profile" />}
                 >
-                  <Settings data-icon="inline-start" strokeWidth={2} />
+                  <SettingsIcon data-icon="inline-start" />
                   Edit profile
                 </Button>
               ) : (

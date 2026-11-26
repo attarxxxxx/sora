@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { Trash } from "reicon-react"
+import { TrashBinMinimalisticIcon } from "@solar-icons/react/linear/trash-bin-minimalistic"
 
 import { deletePostAction } from "@/app/actions/post"
 import {
@@ -51,7 +51,7 @@ export function DeletePostButton({ postId }: { postId: string }) {
           />
         }
       >
-        <Trash strokeWidth={2} />
+        <TrashBinMinimalisticIcon />
       </AlertDialogTrigger>
       <AlertDialogContent size="sm">
         <AlertDialogHeader>

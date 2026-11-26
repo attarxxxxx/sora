@@ -5,14 +5,12 @@ import { Toast as ToastPrimitive } from "@base-ui/react/toast"
 import { cn } from "cn"
 
 import { Button } from "@/components/ui/button"
-import {
-  X,
-  TickCircle,
-  Information,
-  Warning,
-  CloseCircle,
-  Loader,
-} from "reicon-react"
+import { CloseIcon } from "@solar-icons/react/linear/close"
+import { CheckCircleIcon } from "@solar-icons/react/linear/check-circle"
+import { InfoCircleIcon } from "@solar-icons/react/linear/info-circle"
+import { DangerTriangleIcon } from "@solar-icons/react/linear/danger-triangle"
+import { CloseCircleIcon } from "@solar-icons/react/linear/close-circle"
+import { LoaderIcon } from "@solar-icons/react/linear/loader"
 
 const toast = ToastPrimitive.createToastManager()
 
@@ -133,7 +131,7 @@ function ToastClose({
       {...props}
     >
       {children ?? (
-        <X aria-hidden="true" strokeWidth={2} />
+        <CloseIcon aria-hidden="true" />
       )}
     </ToastPrimitive.Close>
   )
@@ -144,31 +142,31 @@ function ToastIcon({ type }: { type: string | undefined }) {
 
   if (type === "success") {
     icon = (
-      <TickCircle aria-hidden="true" strokeWidth={2} />
+      <CheckCircleIcon aria-hidden="true" />
     )
   }
 
   if (type === "info") {
     icon = (
-      <Information aria-hidden="true" strokeWidth={2} />
+      <InfoCircleIcon aria-hidden="true" />
     )
   }
 
   if (type === "warning") {
     icon = (
-      <Warning aria-hidden="true" strokeWidth={2} />
+      <DangerTriangleIcon aria-hidden="true" />
     )
   }
 
   if (type === "error") {
     icon = (
-      <CloseCircle className="text-destructive" aria-hidden="true" strokeWidth={2} />
+      <CloseCircleIcon className="text-destructive" aria-hidden="true" />
     )
   }
 
   if (type === "loading") {
     icon = (
-      <Loader className="animate-spin" aria-hidden="true" strokeWidth={2} />
+      <LoaderIcon className="animate-spin" aria-hidden="true" />
     )
   }
 

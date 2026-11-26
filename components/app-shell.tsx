@@ -3,7 +3,11 @@
 import type { ReactNode } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Bell, Home, PenSquare, Search, User } from "reicon-react"
+import { BellIcon } from "@solar-icons/react/linear/bell"
+import { HomeIcon } from "@solar-icons/react/linear/home"
+import { PenNewSquareIcon } from "@solar-icons/react/linear/pen-new-square"
+import { MagnifierIcon } from "@solar-icons/react/linear/magnifier"
+import { UserIcon } from "@solar-icons/react/linear/user"
 
 import { NotificationBadge } from "@/components/notification/notification-badge"
 import { Button } from "@/components/ui/button"
@@ -37,22 +41,22 @@ export function AppShell({
     {
       label: "Home",
       href: "/",
-      icon: <Home data-icon="inline-start" strokeWidth={2} />,
+      icon: <HomeIcon data-icon="inline-start" />,
     },
     {
       label: "Search",
       href: "/search",
-      icon: <Search data-icon="inline-start" strokeWidth={2} />,
+      icon: <MagnifierIcon data-icon="inline-start" />,
     },
     {
       label: "Notifications",
       href: "/notifications",
-      icon: <Bell data-icon="inline-start" strokeWidth={2} />,
+      icon: <BellIcon data-icon="inline-start" />,
     },
     {
       label: "Profile",
       href: profileHref,
-      icon: <User data-icon="inline-start" strokeWidth={2} />,
+      icon: <UserIcon data-icon="inline-start" />,
     },
   ]
 
@@ -60,27 +64,27 @@ export function AppShell({
     {
       label: "Home",
       href: "/",
-      icon: <Home data-icon="inline-start" strokeWidth={2} />,
+      icon: <HomeIcon data-icon="inline-start" />,
     },
     {
       label: "Search",
       href: "/search",
-      icon: <Search data-icon="inline-start" strokeWidth={2} />,
+      icon: <MagnifierIcon data-icon="inline-start" />,
     },
     {
       label: "New post",
       href: composeHref,
-      icon: <PenSquare data-icon="inline-start" strokeWidth={2} />,
+      icon: <PenNewSquareIcon data-icon="inline-start" />,
     },
     {
       label: "Notifications",
       href: "/notifications",
-      icon: <Bell data-icon="inline-start" strokeWidth={2} />,
+      icon: <BellIcon data-icon="inline-start" />,
     },
     {
       label: "Profile",
       href: profileHref,
-      icon: <User data-icon="inline-start" strokeWidth={2} />,
+      icon: <UserIcon data-icon="inline-start" />,
     },
   ]
 
@@ -122,7 +126,7 @@ export function AppShell({
           </nav>
 
           <Button nativeButton={false} render={<Link href={composeHref} />}>
-            <PenSquare data-icon="inline-start" strokeWidth={2} />
+            <PenNewSquareIcon data-icon="inline-start" />
             New post
           </Button>
         </aside>

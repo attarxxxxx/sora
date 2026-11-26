@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { notFound } from "next/navigation"
-import { ArrowLeft } from "reicon-react"
+import { ArrowLeftIcon } from "@solar-icons/react/linear/arrow-left"
 
 import { PostCard } from "@/components/post/post-card"
 import { ReplyComposer } from "@/components/post/reply-composer"
@@ -81,7 +81,7 @@ export default async function Page({ params }: PostPageProps) {
           className="self-start"
           render={<Link href="/" />}
         >
-          <ArrowLeft data-icon="inline-start" strokeWidth={2} />
+          <ArrowLeftIcon data-icon="inline-start" />
           Back
         </Button>
 

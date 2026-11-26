@@ -1,6 +1,6 @@
 import { Fragment } from "react"
 import Link from "next/link"
-import { Home } from "reicon-react"
+import { HomeIcon } from "@solar-icons/react/linear/home"
 
 import { PostCard } from "@/components/post/post-card"
 import { Button } from "@/components/ui/button"
@@ -29,7 +29,7 @@ export function PostList({
       <Empty className="border">
         <EmptyHeader>
           <EmptyMedia variant="icon">
-            <Home strokeWidth={2} />
+            <HomeIcon />
           </EmptyMedia>
           <EmptyTitle>No posts yet</EmptyTitle>
           <EmptyDescription>

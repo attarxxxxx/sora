@@ -1,6 +1,10 @@
 import Link from "next/link"
 import { Fragment } from "react"
-import { Bell, Heart, Message, Repeat, UserAdd } from "reicon-react"
+import { BellIcon } from "@solar-icons/react/linear/bell"
+import { HeartIcon } from "@solar-icons/react/linear/heart"
+import { ChatRoundIcon } from "@solar-icons/react/linear/chat-round"
+import { RepeatIcon } from "@solar-icons/react/linear/repeat"
+import { UserPlusIcon } from "@solar-icons/react/linear/user-plus"
 
 import { MarkNotificationReadButton } from "@/components/notification/notification-actions"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
@@ -18,19 +22,19 @@ import { cn } from "@/lib/utils"
 
 const notificationMeta = {
   [NotificationType.LIKE]: {
-    icon: Heart,
+    icon: HeartIcon,
     description: "liked your post",
   },
   [NotificationType.REPOST]: {
-    icon: Repeat,
+    icon: RepeatIcon,
     description: "reposted your post",
   },
   [NotificationType.REPLY]: {
-    icon: Message,
+    icon: ChatRoundIcon,
     description: "replied to your post",
   },
   [NotificationType.FOLLOW]: {
-    icon: UserAdd,
+    icon: UserPlusIcon,
     description: "started following you",
   },
 } as const
@@ -57,7 +61,7 @@ export function NotificationList({
       <Empty className="border">
         <EmptyHeader>
           <EmptyMedia variant="icon">
-            <Bell strokeWidth={2} />
+            <BellIcon />
           </EmptyMedia>
           <EmptyTitle>No notifications yet</EmptyTitle>
           <EmptyDescription>
@@ -143,7 +147,7 @@ export function NotificationList({
 
               <Icon
                 aria-hidden="true"
-                className="hidden size-4 shrink-0 text-muted-foreground sm:block" strokeWidth={2} />
+                className="hidden size-4 shrink-0 text-muted-foreground sm:block" />
             </div>
           </Fragment>
         )
