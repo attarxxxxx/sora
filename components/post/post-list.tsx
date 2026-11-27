@@ -13,16 +13,18 @@ import {
   EmptyTitle,
 } from "@/components/ui/empty"
 import { Separator } from "@/components/ui/separator"
-import type { FeedPost } from "@/lib/posts"
+import type { FeedPost, FeedTab } from "@/lib/posts"
 
 export function PostList({
   posts,
   nextCursor,
   isSignedIn,
+  tab = "for-you",
 }: {
   posts: FeedPost[]
   nextCursor: string | null
   isSignedIn: boolean
+  tab?: FeedTab
 }) {
   if (posts.length === 0) {
     return (
@@ -31,9 +33,13 @@ export function PostList({
           <EmptyMedia variant="icon">
             <HomeIcon />
           </EmptyMedia>
-          <EmptyTitle>No posts yet</EmptyTitle>
+          <EmptyTitle>
+            {tab === "following" ? "No posts from your following yet" : "No posts yet"}
+          </EmptyTitle>
           <EmptyDescription>
-            When someone shares a thought, it will show up here.
+            {tab === "following"
+              ? "Follow people to see their posts here."
+              : "When someone shares a thought, it will show up here."}
           </EmptyDescription>
         </EmptyHeader>
         {!isSignedIn && (
@@ -59,7 +65,13 @@ export function PostList({
           <Button
             variant="outline"
             render={
-              <Link href={`/?cursor=${encodeURIComponent(nextCursor)}`} />
+              <Link
+                href={
+                  tab === "following"
+                    ? `/?tab=following&cursor=${encodeURIComponent(nextCursor)}`
+                    : `/?cursor=${encodeURIComponent(nextCursor)}`
+                }
+              />
             }
           >
             Load more

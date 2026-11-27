@@ -3,6 +3,8 @@ import { prisma } from "@/lib/prisma"
 export const FEED_PAGE_SIZE = 10
 export const POST_MAX_LENGTH = 500
 
+export type FeedTab = "for-you" | "following"
+
 export type PostAuthor = {
   id: string
   name: string
@@ -142,15 +144,27 @@ export async function getFeed({
   cursor,
   limit = FEED_PAGE_SIZE,
   viewerId,
+  tab = "for-you",
 }: {
   cursor?: string
   limit?: number
   viewerId?: string
+  tab?: FeedTab
 } = {}) {
+  const followingFilter =
+    tab === "following" && viewerId
+      ? {
+          OR: [
+            { authorId: viewerId },
+            { author: { followers: { some: { followerId: viewerId } } } },
+          ],
+        }
+      : {}
+
   const posts = await prisma.post.findMany({
     take: limit + 1,
     ...(cursor ? { cursor: { id: cursor }, skip: 1 } : {}),
-    where: { parentId: null },
+    where: { parentId: null, ...followingFilter },
     orderBy: [{ createdAt: "desc" }, { id: "desc" }],
     select: postSelect(viewerId),
   })
